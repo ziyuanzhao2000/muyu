@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-// import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import {ObjectControls} from '../ObjectControls.js';
+import { ObjectControls } from '../ObjectControls.js';
+import { GLTFLoader } from 'gltf_loader';
 
 
 // initialize some other variables
@@ -20,22 +20,25 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 // define or load models
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+let loader = new GLTFLoader();
+var obj;
+var controls;
+loader.load( 'model_1.gltf', function ( gltf ) {
+	scene.add( gltf.scene );
+    obj = gltf.scene;
+    obj.children.forEach(mesh => mesh.name='object');
+    obj.scale.x = 10
+    obj.scale.y = 10
+    obj.scale.z = 10
+    let mesh_list = obj.children[0].children;
+    controls = new ObjectControls(camera, renderer.domElement, mesh_list)
+    controls.enableVerticalRotation(); // enables the vertical rotation
+    controls.disableZoom();
+}, undefined, function ( error ) {
+	console.error( error );
+} );
+
 const stick_geometry = new THREE.CylinderGeometry( 0.05, 0.05, 0.5, 32 ); 
-
-const edges = new THREE.EdgesGeometry( geometry ); 
-const material = new THREE.MeshBasicMaterial( { 
-        color: 0x0000ff,
-        fog: true
-    } );
-const cube = new THREE.Mesh( geometry, material );
-cube.name = 'object';
-scene.add( cube );
-
-const controls = new ObjectControls( camera, renderer.domElement, cube);
-controls.enableVerticalRotation(); // enables the vertical rotation
-controls.disableZoom();
-
 const stick = new THREE.Mesh (stick_geometry, 
     new THREE.MeshBasicMaterial( { 
         color: 0xffff00,
@@ -44,12 +47,16 @@ const stick = new THREE.Mesh (stick_geometry,
 scene.add( stick );
 stick.position.set(0, 0, 1);
 
-// const axesHelper = new THREE.AxesHelper( 5 );
-// scene.add( axesHelper );
+// add lighting and misc elmts
+const ambientLight = new THREE.AmbientLight(0xFFFFFF);
+ambientLight.intensity = 4;
+scene.add( ambientLight );
+
+const axesHelper = new THREE.AxesHelper( 5 );
+scene.add( axesHelper );
 
 // modify locations and rotations before draw
 camera.position.z = 5;
-// controls.update();
 stick.rotation.z = Math.PI/180 * 30;
 
 // inject event listeners
@@ -100,13 +107,12 @@ function animate() {
     raycaster.setFromCamera( pointer, camera );
 	const intersects = raycaster.intersectObjects( scene.children );
     const currPointerOnObj = intersects.some(x => x.object.name=="object")
-    if (currPointerOnObj && !prevPointerOnObj) {
+    if (currPointerOnObj && !prevPointerOnObj && !enableOrbitUpdate) {
         hitObject();
     } 
     prevPointerOnObj = currPointerOnObj;
 
 	requestAnimationFrame( animate );
-    // controls.update();
 	renderer.render( scene, camera );
 }
 animate();
