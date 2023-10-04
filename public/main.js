@@ -26,11 +26,11 @@ var controls;
 loader.load( 'model_1.gltf', function ( gltf ) {
 	scene.add( gltf.scene );
     obj = gltf.scene;
-    obj.children.forEach(mesh => mesh.name='object');
     obj.scale.x = 10
     obj.scale.y = 10
     obj.scale.z = 10
     let mesh_list = obj.children[0].children;
+    mesh_list.forEach(mesh => mesh.name='object');
     controls = new ObjectControls(camera, renderer.domElement, mesh_list)
     controls.enableVerticalRotation(); // enables the vertical rotation
     controls.disableZoom();
