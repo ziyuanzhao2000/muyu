@@ -5,7 +5,7 @@ import { GLTFLoader } from 'gltf_loader';
 
 // initialize some other variables
 let enableOrbitUpdate = true;
-const audio = new Audio('./wood_hit.wav');
+const audio = new Audio('./Muyu_Demopage.wav');
 
 
 // setup the scene
@@ -13,16 +13,6 @@ const scene = new THREE.Scene();
 // scene.fog = new THREE.Fog( 0xcccccc, 0, 10);
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-const skyboxTexture = new THREE.CubeTextureLoader()
-    .setPath('skybox/')
-    .load([
-        'px.png',
-        'nx.png',
-        'py.png',
-        'ny.png',
-        'pz.png',
-        'nz.png'
-]);
 const paths = ['skybox/py.png',
             'skybox/ny.png',
             'skybox/pz.png',
@@ -81,17 +71,6 @@ loader.load('hammer.gltf', function (gltf) {
 
     console.log(stick)
 })
-// const stick_geometry = new THREE.CylinderGeometry( 0.05, 0.05, 0.5, 32 ); 
-// const stick = new THREE.Mesh (stick_geometry, 
-//     new THREE.MeshBasicMaterial( { 
-//         color: 0xffff00,
-//         fog: true
-//     } )); 
-// scene.add( stick );
-// const stickDistance = 2;
-// stick.position.set(0, 0, stickDistance);
-// stick.rotation.z = Math.PI/180 * 30;
-
 
 // add lighting and misc elmts
 const ambientLight = new THREE.AmbientLight(0xFFFFFF);
@@ -150,6 +129,7 @@ const raycaster = new THREE.Raycaster();
 let prevPointerOnObj = false;
 
 function hitObject() {
+    audio.currentTime = 0; // allows making sounds from repeated impacts
     audio.play()
 }
 

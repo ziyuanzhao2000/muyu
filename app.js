@@ -1,4 +1,6 @@
 import express from 'express';
+import path from 'path';
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -7,6 +9,10 @@ app.use(express.static('public'));
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
+})
+
+app.get("/gallery", (req, res) => {
+    res.sendFile(__dirname + "/gallery.html");
 })
 
 const port = process.env.PORT || 3000;
