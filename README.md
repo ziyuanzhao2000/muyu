@@ -11,3 +11,5 @@ To be updated soon
 * Renovated the navbar by using Bootstrap components
 * Finished implementing the gallery page according to the current design
 * Added an interaction instruction for the display page
+* Added a very basic 'About' page
+* Changed the webpage titles

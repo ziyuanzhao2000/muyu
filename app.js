@@ -15,6 +15,10 @@ app.get("/gallery", (req, res) => {
     res.sendFile(__dirname + "/gallery.html");
 })
 
+app.get("/about", (req, res) => {
+    res.sendFile(__dirname + "/about.html");
+})
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log("Server started on port 3000");
