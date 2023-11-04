@@ -8,15 +8,15 @@ app.use(express.static('public'));
 // app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "/pages/index.html");
 })
 
 app.get("/gallery", (req, res) => {
-    res.sendFile(__dirname + "/gallery.html");
+    res.sendFile(__dirname + "/pages/gallery.html");
 })
 
 app.get("/about", (req, res) => {
-    res.sendFile(__dirname + "/about.html");
+    res.sendFile(__dirname + "/pages/about.html");
 })
 
 const port = process.env.PORT || 3000;
