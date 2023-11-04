@@ -55,10 +55,31 @@
             </ul>
         </div>
     </nav>  
-    
-    <audio loop autoplay src="Background_WebpageAtmosphere.wav" type="audio/wav"> </audio> 
 
+    <audio loop autoplay src="Background_WebpageAtmosphere.wav" type="audio/wav" id="atmosphere"> </audio> 
+
+    <script>
+        document.addEventListener('click', musicPlay);
+        function musicPlay() {
+            document.getElementById('atmosphere').play();
+            document.removeEventListener('click', musicPlay);
+        }
+    </script>
+    
     <script type="module" src="/ObjectControls.js"></script>
     <script type="module" src="/main.js"></script>
+
+    <div class="position-absolute bottom-0 start-0">
+        <div class="card ms-5 mb-5" style="width: 21rem;">
+            <div class="card-body">
+                <h5 class="card-title">交互说明 - Instruction</h5>
+                <ol class="card-text">
+                    <li>按下空格键, 可以在观察和玩耍模式间切换</li>
+                    <li>处于观察模式时, 鼠标拖拽屏幕可以旋转木鱼,以便从不同角度观察</li>
+                    <li>处于玩耍模式时, 木槌会随鼠标移动并在碰到木鱼时发出响声</li>
+                </ol>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
