@@ -7,9 +7,6 @@ const app = express();
 app.use(express.static('public'));
 // app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/pages/index.html");
-})
 
 app.get("/gallery", (req, res) => {
     res.sendFile(__dirname + "/pages/gallery.html");
@@ -17,6 +14,10 @@ app.get("/gallery", (req, res) => {
 
 app.get("/about", (req, res) => {
     res.sendFile(__dirname + "/pages/about.html");
+})
+
+app.get("*", (req, res) => {
+    res.sendFile(__dirname + "/pages/index.html");
 })
 
 const port = process.env.PORT || 3000;
