@@ -83,8 +83,8 @@ const dirLight1 = new THREE.DirectionalLight( 0xffddcc, 5);
 dirLight1.position.set( 1, 0.75, 0.5 );
 scene.add( dirLight1 );
 
-const axesHelper = new THREE.AxesHelper( 5 );
-scene.add( axesHelper );
+// const axesHelper = new THREE.AxesHelper( 5 );
+// scene.add( axesHelper );
 
 // modify locations and rotations before draw
 camera.position.z = 5;
