@@ -52,12 +52,14 @@
         model_names.forEach(model_name => {
             const scene = new THREE.Scene();
             scene.background = new THREE.Color(0x212429);
-            const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
             const renderer = new THREE.WebGLRenderer();
             const model_elm = document.getElementById('model_1');
             const elm_width = model_elm.clientWidth;
-            const elm_height = elm_width / 1.333;
+            const aspect_ratio = 1.333
+            const elm_height = elm_width / aspect_ratio;
+            const camera = new THREE.PerspectiveCamera( 75, aspect_ratio, 0.1, 1000 );
+
             renderer.setSize(elm_width, elm_height);
             document.getElementById(model_name).appendChild( renderer.domElement );
 
