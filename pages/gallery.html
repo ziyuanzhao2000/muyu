@@ -4,30 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="styles.css"> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
-    <link rel="stylesheet" href="album.css">
+    <!-- <link rel="stylesheet" href="album.css"> -->
+    <!-- Fix this part later to not use static resource hosting -->
+    <script type="importmap"> 
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.155.0/build/three.module.js",
+                "gltf_loader": "https://cdn.jsdelivr.net/npm/three/examples/jsm/loaders/GLTFLoader.js",
+                "orbit_control": "https://cdn.jsdelivr.net/npm/three/examples/jsm/controls/OrbitControls.js"
+            }
+        }
+    </script>
     <title>Muyu demo - Gallery</title>
 </head>
 
 <body>
-    <!-- <div class="navbar" id="navbar">
-        <div class="dropdown">
-            <button class="dropbtn">
-                <img class="icon" src="chicken.svg">
-                Menu
-            </button>
-            <div class="dropdown-content">
-                <a href="/">Display</a>
-                <a href="/gallery">Gallery</a>
-                <a href="#">My Collection</a>
-                <a href="#">About</a>
-            </div>
-        </div>
-    </div> -->
-
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
@@ -45,6 +39,75 @@
             </ul>
         </div>
     </nav>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'gltf_loader';
+
+        let models = [];
+        let model_idx = [1, 2, 3, 4, 5, 6];
+        let model_names = model_idx.map(idx => ['model_', idx.toString()].join(''))
+        const scale_factor = 30;
+
+        model_names.forEach(model_name => {
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x212429);
+            const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+            const renderer = new THREE.WebGLRenderer();
+            const model_elm = document.getElementById('model_1');
+            const elm_width = model_elm.clientWidth;
+            const elm_height = elm_width / 1.333;
+            renderer.setSize(elm_width, elm_height);
+            document.getElementById(model_name).appendChild( renderer.domElement );
+
+            let loader = new GLTFLoader();
+            const model_filename = [model_name, '.gltf'].join('')
+            loader.load(model_filename, function ( gltf_obj ) {
+                let model = gltf_obj.scene;
+                model.scale.x = scale_factor;
+                model.scale.y = scale_factor;
+                model.scale.z = scale_factor;
+                scene.add(model);
+                console.log(model)
+            
+            const ambientLight = new THREE.AmbientLight(0xFFFFFF);
+            ambientLight.intensity = 1;
+            scene.add( ambientLight );
+            const dirLight1 = new THREE.DirectionalLight( 0xffddcc, 5);
+            dirLight1.position.set( 1, 0.75, 0.5 );
+            scene.add( dirLight1 );
+            camera.position.z = 5;
+            
+            function animate() {
+                requestAnimationFrame( animate );
+                model.rotation.x += 0.01;
+                model.rotation.z += 0.01;
+                renderer.render( scene, camera );
+            }
+
+            animate();
+
+            }, undefined, function ( error ) {
+                console.error( error );
+            } );
+        })
+
+    
+
+
+        // window.addEventListener( 'resize', onWindowResize );
+        // function onWindowResize() {
+
+        //     camera.aspect = window.innerWidth / window.innerHeight;
+        //     camera.updateProjectionMatrix();
+
+        //     renderer.setSize( window.innerWidth, window.innerHeight );
+
+        // }
+        
+
+    </script>
     
     <div class="album py-5 bg-dark">
         <div class="container">
@@ -52,7 +115,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col mt-0 mb-5">
                     <div class="card border-0 bg-dark">
-                        <img src="M1 demopic.PNG" class="card-img-top">
+                        <div class="card-img-top" id="model_1"></div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"PURPLEBRASS"</h2>
                         </div>
@@ -60,7 +123,7 @@
                 </div>
                 <div class="col mt-0 mb-5">
                     <div class="card border-0 bg-dark">
-                        <img src="M2 demopic.PNG" class="card-img-top">
+                        <div class="card-img-top" id="model_2"></div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"WOODY"</h2>
                         </div>
@@ -68,7 +131,7 @@
                 </div>
                 <div class="col mt-0 mb-5">
                     <div class="card border-0 bg-dark">
-                        <img src="M3 demopic.PNG" class="card-img-top">
+                        <div class="card-img-top" id="model_3"></div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"FROGGY"</h2>
                         </div>
@@ -79,7 +142,7 @@
 
                 <div class="col mt-5 mb-5">
                     <div class="card border-0 bg-dark">
-                        <img src="M4 demopic.PNG" class="card-img-top">
+                        <div class="card-img-top" id="model_4"></div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"EGGSHELL"</h2>
                         </div>
@@ -87,7 +150,7 @@
                 </div>
                 <div class="col mt-5 mb-5">
                     <div class="card border-0 bg-dark">
-                        <img src="M5 demopic.PNG" class="card-img-top">
+                        <div class="card-img-top" id="model_5"></div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"BRONZEMON"</h2>
                         </div>
@@ -95,7 +158,7 @@
                 </div>
                 <div class="col mt-5 mb-5">
                     <div class="card border-0 bg-dark">
-                        <img src="M6 demopic.PNG" class="card-img-top">
+                        <div class="card-img-top" id="model_6"></div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"THE GOLD"</h2>
                         </div>
