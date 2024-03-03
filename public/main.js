@@ -61,8 +61,9 @@ loader.load(model_filepath, function ( gltf ) {
     controls.setRotationSpeed(0.1);
     controls.setMaxVerticalRotationAngle(Math.PI / 4, Math.PI / 4);
     controls.setMaxHorizontalRotationAngle(Math.PI, Math.PI);
-    controls.enableVerticalRotation(); // enables the vertical rotation
-    controls.disableZoom();
+    controls.enableVerticalRotation(); 
+    // controls.disableZoom();
+    controls.setDistance(3, 5);
 }, undefined, function ( error ) {
 	console.error( error );
 } );
