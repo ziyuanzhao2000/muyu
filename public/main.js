@@ -29,10 +29,16 @@ const skybox = new THREE.Mesh(new THREE.BoxGeometry(100,100,100), skyboxMaterial
 scene.add(skybox);
 
 
-// add rendering engine and orbit control
+// add rendering engine
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
+window.addEventListener('resize', function () {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+})
+
 
 // define or load models
 let loader = new GLTFLoader();
