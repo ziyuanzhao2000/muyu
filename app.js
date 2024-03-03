@@ -7,6 +7,18 @@ const app = express();
 app.use(express.static('public'));
 // app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
+app.get("/model/:modelName", (req, res) => {
+    const modelName = req.params.modelName;
+    res.render(__dirname + "/pages/index.ejs", {
+        modelName: modelName
+    });
+});
+
+app.get("/display", (req, res) => {
+    res.render(__dirname + "/pages/index.ejs", {
+        modelName: "model_1"
+    });
+})
 
 app.get("/gallery", (req, res) => {
     res.sendFile(__dirname + "/pages/gallery.html");
@@ -17,7 +29,7 @@ app.get("/about", (req, res) => {
 })
 
 app.get("*", (req, res) => {
-    res.sendFile(__dirname + "/pages/index.html");
+    res.sendFile(__dirname + "/pages/gallery.html");
 })
 
 const port = process.env.PORT || 3000;

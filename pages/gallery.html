@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
-    <!-- <link rel="stylesheet" href="album.css"> -->
+    <link rel="stylesheet" href="gallery.css">
     <!-- Fix this part later to not use static resource hosting -->
     <script type="importmap"> 
         {
@@ -30,7 +30,7 @@
                         Menu
                     </a>
                     <div class="dropdown-menu dropdown-menu-dark">
-                        <a class="dropdown-item" href="/">Display</a>
+                        <a class="dropdown-item" href="/display">Display</a>
                         <a class="dropdown-item" href="/gallery">Gallery</a>
                         <a class="dropdown-item" href="#">My Collection</a>
                         <a class="dropdown-item" href="/about">About</a>
@@ -117,7 +117,12 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col mt-0 mb-5">
                     <div class="card border-0 bg-dark">
-                        <div class="card-img-top" id="model_1"></div>
+                        <div class="card-img-top" id="model_1">
+                            <a href="model/model_1">
+                                <!-- Solution borrowed from here: https://stackoverflow.com/questions/796087/make-a-div-into-a-link-->
+                                <span class="link-spanner"></span>
+                            </a>
+                        </div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"PURPLEBRASS"</h2>
                         </div>
@@ -125,7 +130,11 @@
                 </div>
                 <div class="col mt-0 mb-5">
                     <div class="card border-0 bg-dark">
-                        <div class="card-img-top" id="model_2"></div>
+                        <div class="card-img-top" id="model_2">
+                            <a href="model/model_2">
+                                <span class="link-spanner"></span>
+                            </a>
+                        </div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"WOODY"</h2>
                         </div>
@@ -133,7 +142,11 @@
                 </div>
                 <div class="col mt-0 mb-5">
                     <div class="card border-0 bg-dark">
-                        <div class="card-img-top" id="model_3"></div>
+                        <div class="card-img-top" id="model_3">
+                            <a href="model/model_3">
+                                <span class="link-spanner"></span>
+                            </a>
+                        </div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"FROGGY"</h2>
                         </div>
@@ -144,7 +157,11 @@
 
                 <div class="col mt-5 mb-5">
                     <div class="card border-0 bg-dark">
-                        <div class="card-img-top" id="model_4"></div>
+                        <div class="card-img-top" id="model_4">
+                            <a href="model/model_4">
+                                <span class="link-spanner"></span>
+                            </a>
+                        </div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"EGGSHELL"</h2>
                         </div>
@@ -152,7 +169,11 @@
                 </div>
                 <div class="col mt-5 mb-5">
                     <div class="card border-0 bg-dark">
-                        <div class="card-img-top" id="model_5"></div>
+                        <div class="card-img-top" id="model_5">
+                            <a href="model/model_5">
+                                <span class="link-spanner"></span>
+                            </a>
+                        </div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"BRONZEMON"</h2>
                         </div>
@@ -160,7 +181,11 @@
                 </div>
                 <div class="col mt-5 mb-5">
                     <div class="card border-0 bg-dark">
-                        <div class="card-img-top" id="model_6"></div>
+                        <div class="card-img-top" id="model_6">
+                            <a href="model/model_6">
+                                <span class="link-spanner"></span>
+                            </a>
+                        </div>
                         <div class="card-body">
                             <h2 class="card-text text-light text-center">"THE GOLD"</h2>
                         </div>

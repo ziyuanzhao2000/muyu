@@ -5,20 +5,20 @@ import { GLTFLoader } from 'gltf_loader';
 
 // initialize some other variables
 let enableOrbitUpdate = true;
-const audio = new Audio('./Muyu_Demopage.wav');
-
+const audio = new Audio('/Muyu_Demopage.wav');
+const this_js = document.getElementById("loader");
 
 // setup the scene
 const scene = new THREE.Scene();
 // scene.fog = new THREE.Fog( 0xcccccc, 0, 10);
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-const paths = ['skybox/py.png',
-            'skybox/ny.png',
-            'skybox/pz.png',
-            'skybox/nz.png',
-            'skybox/px.png',
-            'skybox/nx.png'];
+const paths = ['/skybox/py.png',
+            '/skybox/ny.png',
+            '/skybox/pz.png',
+            '/skybox/nz.png',
+            '/skybox/px.png',
+            '/skybox/nx.png'];
 
 const skyboxMaterial = paths.map(p => new THREE.MeshBasicMaterial({
         map: new THREE.TextureLoader().load(p), 
@@ -39,7 +39,10 @@ let loader = new GLTFLoader();
 var obj;
 var controls;
 const scale_factor = 20;
-loader.load( 'model_1.gltf', function ( gltf ) {
+console.log(this_js);
+const model_filepath = ['/', this_js.getAttribute('model-name'), '.gltf'].join('');
+console.log(model_filepath);
+loader.load(model_filepath, function ( gltf ) {
 	scene.add( gltf.scene );
     obj = gltf.scene;
     obj.scale.x = scale_factor;
@@ -60,7 +63,7 @@ loader.load( 'model_1.gltf', function ( gltf ) {
 
 var stick;
 const stickDistance = 2;
-loader.load('hammer.gltf', function (gltf) {
+loader.load('/hammer.gltf', function (gltf) {
     scene.add(gltf.scene);
     stick = gltf.scene;
     stick.scale.x = scale_factor/2;
