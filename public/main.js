@@ -31,12 +31,13 @@ scene.add(skybox);
 
 // add rendering engine
 const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize( window.innerWidth, window.innerHeight );
+const windowHeight = window.innerHeight - document.getElementById('navbar').clientHeight;
+renderer.setSize( window.innerWidth, windowHeight);
 document.body.appendChild( renderer.domElement );
 window.addEventListener('resize', function () {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = window.innerWidth / windowHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, windowHeight);
 })
 
 
