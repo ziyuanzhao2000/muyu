@@ -41,12 +41,17 @@
         </div>
     </nav>  
 
-    <audio loop autoplay src="Background_WebpageAtmosphere.wav" type="audio/wav" id="atmosphere"> </audio> 
+    <audio loop autoplay src="/Background_WebpageAtmosphere.wav" type="audio/wav" id="atmosphere"> </audio> 
 
     <script>
         document.addEventListener('click', musicPlay);
         function musicPlay() {
-            document.getElementById('atmosphere').play();
+            document.getElementById('atmosphere').play()
+                .then(() => {
+                })
+                .catch(error => {
+                    console.log(error);
+                });;
             document.removeEventListener('click', musicPlay);
         }
     </script>
