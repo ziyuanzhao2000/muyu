@@ -21,7 +21,13 @@ app.get("/display", (req, res) => {
 })
 
 app.get("/gallery", (req, res) => {
-    res.sendFile(__dirname + "/pages/gallery.html");
+    res.render(__dirname + "/pages/gallery.ejs", {
+        modelNames: ["PURPLEBRASS", "WOODY", "FROGGY", 
+                     "EGGSHELL", "BRONZEMON", "GOLD", 
+                     "X", "Y", "Z",
+                     "U", "V", "W", 
+                     "Q"]
+    })
 })
 
 app.get("/about", (req, res) => {
@@ -29,7 +35,13 @@ app.get("/about", (req, res) => {
 })
 
 app.get("*", (req, res) => {
-    res.sendFile(__dirname + "/pages/gallery.html");
+    res.render(__dirname + "/pages/gallery.ejs", {
+        modelNames: ["PURPLEBRASS", "WOODY", "FROGGY", 
+                     "EGGSHELL", "BRONZEMON", "GOLD",
+                     "X", "Y", "Z",
+                     "U", "V", "W", 
+                     "Q"]
+    })
 })
 
 const port = process.env.PORT || 3000;

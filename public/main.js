@@ -46,9 +46,7 @@ let loader = new GLTFLoader();
 var obj;
 var controls;
 const scale_factor = 20;
-console.log(this_js);
 const model_filepath = ['/', this_js.getAttribute('model-name'), '.gltf'].join('');
-console.log(model_filepath);
 loader.load(model_filepath, function ( gltf ) {
 	scene.add( gltf.scene );
     obj = gltf.scene;
@@ -79,8 +77,6 @@ loader.load('/hammer.gltf', function (gltf) {
     stick.scale.z = scale_factor/2;
     stick.position.set(0, 0, stickDistance);
     stick.rotation.z = Math.PI/180 * -50;
-
-    console.log(stick)
 })
 
 // add lighting and misc elmts
