@@ -55,6 +55,12 @@ loader.load(model_filepath, function ( gltf ) {
     obj.scale.z = scale_factor;
     let mesh_list = obj.children[0].children;
     mesh_list.forEach(mesh => mesh.name='object');
+    // monkey patching because models 7-13 seems to have 
+    // a different object hierarchy compared to the first 6
+    // Check with Sting later on if her workflow changed
+    let mesh_list_2 = mesh_list[0].children 
+    mesh_list_2.forEach(mesh => mesh.name='object');
+
     mesh_list.push(skybox);
     controls = new ObjectControls(camera, renderer.domElement, mesh_list)
     controls.setRotationSpeed(0.1);
